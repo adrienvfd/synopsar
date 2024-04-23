@@ -1,0 +1,67 @@
+Run Spring-Boot app w debug (and runtime variables) in linux:
+mvn spring-boot:run -Dspring-boot.run.jvmArguments="-Xdebug" 
+-Dspring-boot.run.arguments="--DB_NAME=demo 
+--DB_USERNAME=postgres --DB_PASSWORD=pass --JWT_SECRET=secretKey"
+
+How yo install and use postgresql:
+
+Tutorial: Installing and Running a PostgreSQL Database using WSL Commands on Linux
+
+Prerequisites:
+
+You have Windows 10 or later installed on your system.
+You have enabled Windows Subsystem for Linux (WSL) on your system.
+You have a Linux distribution installed on WSL (e.g., Ubuntu, Debian, Kali Linux, etc.).
+
+Step 1: Open WSL Terminal
+Press the Windows key + R to open the Run dialog box.
+Type wsl and press Enter to open the WSL terminal.
+Alternatively, you can also open the WSL terminal from the Start menu by searching for "WSL" or "Windows Subsystem for Linux".
+
+Step 2: Update the Package List
+In the WSL terminal, update the package list by running the following command:
+sudo apt update
+
+Step 3: Install PostgreSQL
+Install PostgreSQL by running the following command:
+sudo apt install postgresql
+
+Step 4: Start the PostgreSQL Service
+Start the PostgreSQL service by running the following command:
+sudo service postgresql start
+
+Step 5: Enable PostgreSQL to Start Automatically
+Enable PostgreSQL to start automatically on boot by running the following command:
+sudo update-rc.d postgresql enable
+
+Step 6: Switch to the PostgreSQL User
+Switch to the PostgreSQL user by running the following command:
+sudo su - postgres
+
+Step 7: Set a Password for the PostgreSQL User
+Set a password for the PostgreSQL user by running the following command:
+psql -c "ALTER USER postgres WITH PASSWORD 'your_password';"
+Replace your_password with a strong password of your choice. Press Enter to execute the command.
+
+Step 8: Create a New Database
+Create a new database by running the following command:
+createdb mydatabase
+```  \
+* Replace `mydatabase` with the name of your choice for the new database. Press Enter to execute the command.
+**Step 9: Connect to the Database**  
+--------------------------- 
+* Connect to the database by running the following command: 
+psql mydatabase
+
+* Press Enter to execute the command. You will now be connected to the database.
+
+**Congratulations!** You have successfully installed and run a PostgreSQL database using WSL commands on Linux. You can now create tables, insert data, and perform various database operations using SQL commands.*
+
+**Common Commands:**
+ 
+* `psql`: Connect to a PostgreSQL database.
+* `createdb`: Create a new database.
+* `psql -l`: List all databases.
+* `psql -d mydatabase`: Connect to a specific database.
+* `sudo service postgresql stop`: Stop the PostgreSQL service.
+* `sudo service postgresql restart`: Restart the PostgreSQL service.
