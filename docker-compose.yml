@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  transcriptor:
+    build: ./transcriptor/_restAPI.py
+    ports:
+      - "5000:5000"
+    depends_on:
+      - synopsar-api
+
+  synopsar-ui:
+    build: ./synopsar-ui
+    ports:
+      - "3000:3000"
+    depends_on:
+      - synopsar-api
+
+  synopsar-api:
+    build: ./synopsar-api/
+    ports:
+      - "8080:8080"
+    depends_on:
+      - llm
+
+  llm:
+    build: ./llm
+    ports:
+      - "5001:5001"
