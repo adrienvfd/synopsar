@@ -2,25 +2,23 @@ version: '3.8'
 
 services:
   transcriptor:
-    build: ./transcriptor/_restAPI.py
+    build: ./transcriptor
     ports:
       - "5000:5000"
-    depends_on:
-      - synopsar-api
 
   synopsar-ui:
     build: ./synopsar-ui
     ports:
       - "3000:3000"
-    depends_on:
-      - synopsar-api
 
   synopsar-api:
-    build: ./synopsar-api/
+    build: ./synopsar-api
     ports:
-      - "8080:8080"
+      - "8081:8081"
     depends_on:
-      - llm
+      - transcriptor
+    links:
+      - transcriptor:transcriptor
 
   llm:
     build: ./llm

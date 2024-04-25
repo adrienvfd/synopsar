@@ -1,4 +1,4 @@
-from flask  import Flask
+from flask import Flask
 from flask_restful import Api, Resource
 from youtube_transcript_api import YouTubeTranscriptApi
 
@@ -12,4 +12,4 @@ class Transcript(Resource):
 api.add_resource(Transcript, "/transcript/<string:video_id>")
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='0.0.0.0', debug=False, port=5000)

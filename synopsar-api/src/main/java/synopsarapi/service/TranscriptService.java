@@ -11,12 +11,13 @@ public class TranscriptService {
 
     public String getTranscriptFromUrl(String youtubeUrl) {
         String videoId = getVideoIdFromUrl(youtubeUrl);
-        
+
         System.out.println("Video ID: " + videoId);
-        
+
         // Call local python script
         RestTemplate restTemplate = new RestTemplate();
-        String url = String.format("http://localhost:5000/transcript/%s", videoId);
+        String url = String.format("http://transcriptor:5000/transcript/%s", videoId);
+
         System.out.println("Calling " + url);
         String response = restTemplate.getForObject(url, String.class, videoId);
         System.out.println("Response: " + response);
@@ -34,14 +35,14 @@ public class TranscriptService {
     }
 }
 
-//import org.springframework.web.client.RestTemplate;
+// import org.springframework.web.client.RestTemplate;
 
 // public class TranscriptClient {
-//     public static void main(String[] args) {
-//         RestTemplate restTemplate = new RestTemplate();
-//         String url = "http://localhost:5000/transcript/{video_id}";
-//         String videoId = "your_video_id";
-//         String response = restTemplate.getForObject(url, String.class, videoId);
-//         System.out.println(response);
-//     }
+// public static void main(String[] args) {
+// RestTemplate restTemplate = new RestTemplate();
+// String url = "http://localhost:5000/transcript/{video_id}";
+// String videoId = "your_video_id";
+// String response = restTemplate.getForObject(url, String.class, videoId);
+// System.out.println(response);
+// }
 // }
