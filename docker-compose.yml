@@ -5,6 +5,12 @@ services:
     build: ./transcriptor
     ports:
       - "5000:5000"
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgresql://myuser:mypassword@db:5432/mydb
+    volumes:
+      - pgdata:/var/lib/postgresql/data
 
   synopsar-ui:
     build: ./synopsar-ui
@@ -17,10 +23,51 @@ services:
       - "8081:8081"
     depends_on:
       - transcriptor
-    links:
-      - transcriptor:transcriptor
+      - db
 
   llm:
     build: ./llm
     ports:
       - "5001:5001"
+
+  db:
+    image: postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: mydb
+    ports:
+      - "5432:5432"
+
+volumes:
+  pgdata:
+
+
+# version: '3.8'
+
+# services:
+#   transcriptor:
+#     build: ./transcriptor
+#     ports:
+#       - "5000:5000"
+
+#   synopsar-ui:
+#     build: ./synopsar-ui
+#     ports:
+#       - "3000:3000"
+
+#   synopsar-api:
+#     build: ./synopsar-api
+#     ports:
+#       - "8081:8081"
+#     depends_on:
+#       - transcriptor
+#     links:
+#       - transcriptor
+
+#   llm:
+#     build: ./llm
+#     ports:
+#       - "5001:5001"
