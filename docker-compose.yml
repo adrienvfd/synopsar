@@ -12,20 +12,23 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
 
-  synopsar-ui:
-    build: ./synopsar-ui
-    ports:
-      - "3000:3000"
+  # synopsar-ui:
+  #   build: ./synopsar-ui
+  #   ports:
+  #     - "3000:3000"
 
   synopsar-api:
     build: ./synopsar-api
     ports:
       - "8081:8081"
     depends_on:
+      - llm
       - transcriptor
       - db
 
   llm:
+    environment:
+      - GROQ_API_KEY=${GROQ_API_KEY}
     build: ./llm
     ports:
       - "5001:5001"
@@ -43,31 +46,3 @@ services:
 
 volumes:
   pgdata:
-
-
-# version: '3.8'
-
-# services:
-#   transcriptor:
-#     build: ./transcriptor
-#     ports:
-#       - "5000:5000"
-
-#   synopsar-ui:
-#     build: ./synopsar-ui
-#     ports:
-#       - "3000:3000"
-
-#   synopsar-api:
-#     build: ./synopsar-api
-#     ports:
-#       - "8081:8081"
-#     depends_on:
-#       - transcriptor
-#     links:
-#       - transcriptor
-
-#   llm:
-#     build: ./llm
-#     ports:
-#       - "5001:5001"

@@ -17,7 +17,7 @@ public class TranscriptController {
     public String getTranscriptFromUrl(@RequestParam String url) {
 
         System.out.println("Get transcript from: " + url);
-        
+    
         return transcriptService.getTranscriptFromUrl(url);  
     }
 }

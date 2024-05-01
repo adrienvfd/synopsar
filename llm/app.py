@@ -8,11 +8,13 @@ llm = LLM()
 
 @app.route('/summarize', methods=['POST'])
 def summarize():
-    data = request.get_json()
     system_prompt = Prompts.summarize
-    formatted = llm.call_for_json(system_prompt)
-    return jsonify(formatted)
+    user_prompt = request.get_json()
+    response = llm.call(system_prompt, user_prompt)
+    return response
+    # return jsonify({'response': response})
 
 if __name__ == '__main__':
     ## run app on port 5001
-    app.run(port=5001, debug=False)
+    app.run(host='0.0.0.0', debug=False, port=5001)
+
