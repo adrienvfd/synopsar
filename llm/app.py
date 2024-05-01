@@ -12,7 +12,6 @@ def summarize():
     user_prompt = request.get_json()
     response = llm.call(system_prompt, user_prompt)
     return response
-    # return jsonify({'response': response})
 
 if __name__ == '__main__':
     ## run app on port 5001
