@@ -9,7 +9,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class LinkToSummaryService {
+public class SummaryService {
 
     private final TranscriptService transcriptService;
     private final LLMService lLmService;

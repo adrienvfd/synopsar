@@ -9,3 +9,4 @@ build
 upload_new_version.sh
 .coverage
 .vscode/**
+.turbo

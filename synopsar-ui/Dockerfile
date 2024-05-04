@@ -5,8 +5,8 @@ WORKDIR /app
 COPY package*.json ./
 
 RUN npm install -g pnpm
-
 RUN pnpm install
+RUN pnpm install react-oauth2
 
 COPY . .
 
