@@ -21,7 +21,8 @@
     background-position: 0% 100%;
     padding: 20px;
     margin: 0 auto;
-    /* max-width: 800px; */
+    max-width: 800px;
+    max-height: max-content;
     text-align: center;
     color: rgb(var(--foreground-rgb));
     background: linear-gradient(

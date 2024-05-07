@@ -9,6 +9,8 @@ export default function NavBar() {
         padding: "1em",
         display: "flex",
         justifyContent: "space-between",
+        flexDirection: "row",
+        columnGap: "1em",
       }}
     >
       <div style={{ fontSize: "1.25em", margin: 0 }}>
