@@ -26,11 +26,11 @@ services:
       - transcriptor
       - db
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/synopsar_db
-      - SPRING_DATASOURCE_USERNAME=${DB_USER}
-      - SPRING_DATASOURCE_PASSWORD=${DB_PASS}
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+      - DB_USER=${DB_USER}
+      - DB_PASS=${DB_PASS}
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
-
 
   llm:
     environment:
