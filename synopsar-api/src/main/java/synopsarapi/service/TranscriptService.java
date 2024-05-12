@@ -1,10 +1,10 @@
 package synopsarapi.service;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 public class TranscriptService {
@@ -20,7 +20,7 @@ public class TranscriptService {
 
         System.out.println("Calling " + url);
         String response = restTemplate.getForObject(url, String.class, videoId);
-        System.out.println("Response: " + response);
+        System.out.println("Transcript has been retrieved from " + url);
         return response;
     }
 
@@ -34,15 +34,3 @@ public class TranscriptService {
         return null;
     }
 }
-
-// import org.springframework.web.client.RestTemplate;
-
-// public class TranscriptClient {
-// public static void main(String[] args) {
-// RestTemplate restTemplate = new RestTemplate();
-// String url = "http://localhost:5000/transcript/{video_id}";
-// String videoId = "your_video_id";
-// String response = restTemplate.getForObject(url, String.class, videoId);
-// System.out.println(response);
-// }
-// }

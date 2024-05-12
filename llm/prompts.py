@@ -3,6 +3,6 @@ class Prompts:
     All the information you return must be in the input. 
     ONLY USE THE INFORMATION FROM THE USER PROMPT.
     Keep it concise.
-    It must have a title, an introduction, a conclusion, and a list of key points.
-    WRITE THE RESULT IN MARKDOWN FORMAT.
+    It must have a title (title text will be surrounded by " "), an introduction, a list of key points, and a conclusion,.
+    WRITE THE SUMMARY RESULT IN MARKDOWN FORMAT.
     """

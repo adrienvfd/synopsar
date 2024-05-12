@@ -1,16 +1,22 @@
 package synopsarapi.service;
 
-import org.springframework.stereotype.Service;
-
 import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
-
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import synopsarapi.entity.AppUser;
+import synopsarapi.entity.Summary;
+import synopsarapi.repository.SummaryRepository;
+
+import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class SummaryService {
 
+    private final SummaryRepository summaryRepository;
     private final TranscriptService transcriptService;
     private final LLMService lLmService;
 
@@ -46,4 +52,29 @@ public class SummaryService {
         return sb.toString();
     }
 
+    public Summary saveSummary(Summary summary) {
+        return summaryRepository.save(summary);
+    }
+
+    public List<Summary> getCurrentUserHistory() {
+        AppUser appUser = AppUser.getCurrentAppUser();
+        System.out.println("APP USER: " + appUser.toString());
+
+        return summaryRepository.findAllByUserId(appUser.getId());
+    }
+
+    @Transactional
+    public void deleteSummaryById(Long id) {
+        AppUser appUser = AppUser.getCurrentAppUser();
+        System.out.println("About to delete summary w id " + id + " for user " + appUser.getId());
+        Optional<Summary> summaryOptional = summaryRepository.findByIdAndUserId(id, appUser.getId());
+        summaryOptional.ifPresent(summaryRepository::delete);
+    }
+
+    @Transactional
+    public void deleteAllSummaries() {
+        AppUser appUser = AppUser.getCurrentAppUser();
+        List<Summary> summaries = summaryRepository.findAllByUserId(appUser.getId());
+        summaryRepository.deleteAll(summaries);
+    }
 }

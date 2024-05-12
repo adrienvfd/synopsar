@@ -11,21 +11,33 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @EnableWebSecurity
 public class SynopsarApiApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SynopsarApiApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(SynopsarApiApplication.class, args);
+    }
 
-	@Bean
-	public WebMvcConfigurer configure () {
-		return new WebMvcConfigurer() {
-			@Override
-			public void addCorsMappings(CorsRegistry reg) {
-				reg.addMapping("/**")
-						.allowedOrigins("http://localhost:3000")
-						.allowedHeaders("*")
-						.allowedMethods("*")
-						.allowCredentials(true);
-			}
-		};
-	}
+    @Bean
+    public WebMvcConfigurer configure() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry reg) {
+                reg.addMapping("/**")
+                        .allowedOrigins("http://localhost:3000")
+                        .allowedHeaders("*")
+                        .allowedMethods("GET", "POST", "PUT", "DELETE")
+                        .allowCredentials(true);
+
+                reg.addMapping("/summary")
+                        .allowedOrigins("http://localhost:3000")
+                        .allowedHeaders("*")
+                        .allowedMethods("POST, DELETE")
+                        .allowCredentials(true);
+
+                reg.addMapping("/summary/**")
+                        .allowedOrigins("http://localhost:3000")
+                        .allowedHeaders("*")
+                        .allowedMethods("DELETE")
+                        .allowCredentials(true);
+            }
+        };
+    }
 }

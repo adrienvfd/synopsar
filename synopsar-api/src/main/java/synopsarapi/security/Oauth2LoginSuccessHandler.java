@@ -21,6 +21,6 @@ public class Oauth2LoginSuccessHandler implements AuthenticationSuccessHandler {
         AppUser appUser = AppUser.fromGoogleUser(oAuth2User);
         AppAuthenticationToken token = new AppAuthenticationToken(appUser);
         SecurityContextHolder.getContext().setAuthentication(token);
-        response.sendRedirect("http://localhost:3000/profile");
+        response.sendRedirect("http://localhost:3000/generate");
     }
 }
