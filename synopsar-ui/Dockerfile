@@ -11,6 +11,8 @@ RUN pnpm install react-markdown
 
 COPY . .
 
+ENV BUILD_STANDALONE true
+
 RUN pnpm build
 
 EXPOSE 3000

@@ -147,11 +147,9 @@ function History() {
                                             overflowY: "scroll",
                                         }}
                                     >
-                                        <ReactMarkdown
-                                            children={currentItemSummary}
-                                            remarkPlugins={[remarkGfm]}
-                                            textAlign="left"
-                                        />
+                                        <div>
+                                            <ReactMarkdown remarkPlugins={[remarkGfm]}>{currentItemSummary}</ReactMarkdown>
+                                        </div>
                                         <Button
                                             variant="contained"
                                             onClick={() => setCurrentItemSummary("")}

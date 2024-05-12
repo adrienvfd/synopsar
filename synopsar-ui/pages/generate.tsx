@@ -24,7 +24,7 @@ function Generate() {
         });
     };
 
-    const generateSummary = async (event) => {
+    const generateSummary = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         setLoading(true);
         setLoadingMessage("Fetching YouTube Summary...");
@@ -107,10 +107,9 @@ function Generate() {
                 </div>
                 <div className="items-left px-12 pt-12 text-left">
                     <ReactMarkdown
-                        children={summary}
                         remarkPlugins={[remarkGfm]}
-                        textAlign="left"
-                    />
+                    >{summary}
+                    </ReactMarkdown>
                 </div>
             </main>
         </div>

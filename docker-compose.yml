@@ -1,6 +1,9 @@
-version: '3.8'
-
 services:
+  synopsar-ui:
+    build: ./synopsar-ui
+    ports:
+      - "3000:3000"
+
   transcriptor:
     build: ./transcriptor
     ports:
@@ -11,11 +14,6 @@ services:
       - DATABASE_URL=postgresql://${DB_USER}:${DB_PASS}@db:5432/{DB_NAME}
     volumes:
       - pgdata:/var/lib/postgresql/data
-
-  # synopsar-ui:
-  #   build: ./synopsar-ui
-  #   ports:
-  #     - "3000:3000"
 
   synopsar-api:
     build: ./synopsar-api
